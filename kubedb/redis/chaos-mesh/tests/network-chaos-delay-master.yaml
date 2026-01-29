@@ -1,0 +1,20 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: delay
+  namespace: chaos-mesh
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - chaostesting
+    labelSelectors:
+      app.kubernetes.io/name: redises.kubedb.com
+      kubedb.com/role: master
+  delay:
+    latency: '10ms'
+    correlation: '100'
+    jitter: '0ms'
+  direction: both
+

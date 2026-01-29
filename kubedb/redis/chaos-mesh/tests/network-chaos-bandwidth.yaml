@@ -1,0 +1,18 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: bandwidth
+  namespace: chaos-mesh
+spec:
+  action: bandwidth
+  mode: all
+  selector:
+    namespaces:
+      - chaostesting
+    labelSelectors:
+      app.kubernetes.io/name: redises.kubedb.com
+  bandwidth:
+    rate: '1mbps'
+    limit: 20971520
+    buffer: 10000
+

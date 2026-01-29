@@ -1,0 +1,19 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: memory-stress-example
+  namespace: chaos-mesh
+spec:
+  mode: all
+  selector:
+    namespaces:
+      - chaostesting
+    labelSelectors:
+      app.kubernetes.io/name: redises.kubedb.com
+      kubedb.com/role: master
+  duration: "10m"
+  stressors:
+    memory:
+      workers: 4
+      size: '256MB'
+

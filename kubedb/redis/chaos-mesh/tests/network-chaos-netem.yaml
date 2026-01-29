@@ -1,0 +1,19 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-emulation
+  namespace: chaos-mesh
+spec:
+  action: netem
+  mode: all
+  selector:
+    namespaces:
+      - chaostesting
+    labelSelectors:
+      app.kubernetes.io/name: redises.kubedb.com
+  delay:
+    latency: '10ms'
+    correlation: '100'
+    jitter: '0ms'
+  rate:
+    rate: '10mbps'

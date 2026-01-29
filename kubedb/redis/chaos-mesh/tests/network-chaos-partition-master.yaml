@@ -1,0 +1,25 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: partition
+  namespace: chaos-mesh
+spec:
+  action: partition
+  mode: all
+  selector:
+    namespaces:
+      - chaostesting
+    labelSelectors:
+      app.kubernetes.io/name: redises.kubedb.com
+      kubedb.com/role: master
+  direction: both
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - chaostesting
+      labelSelectors:
+        app.kubernetes.io/name: redises.kubedb.com
+        kubedb.com/role: slave
+  duration: "10m"
+

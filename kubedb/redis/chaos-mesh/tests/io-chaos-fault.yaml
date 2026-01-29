@@ -1,0 +1,19 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: IOChaos
+metadata:
+  name: io-fault-example
+  namespace: chaos-mesh
+spec:
+  action: fault
+  mode: all
+  selector:
+    namespaces:
+      - chaostesting
+    labelSelectors:
+      app.kubernetes.io/name: redises.kubedb.com
+      kubedb.com/role: master
+  volumePath: /data
+  path: /data/**/*
+  errno: 5
+  percent: 50
+  duration: '400s'

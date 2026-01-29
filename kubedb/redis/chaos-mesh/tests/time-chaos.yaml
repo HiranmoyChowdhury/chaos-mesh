@@ -1,0 +1,13 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: TimeChaos
+metadata:
+  name: time-shift-example
+  namespace: chaos-mesh
+spec:
+  mode: all
+  selector:
+    namespaces:
+      - chaostesting
+    labelSelectors:
+      app.kubernetes.io/name: redises.kubedb.com
+  timeOffset: '-10m100ns'

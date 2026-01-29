@@ -1,0 +1,15 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: rd-slave-pod-failure-short
+  namespace: chaos-mesh
+spec:
+  action: pod-failure
+  mode: all
+  selector:
+    namespaces:
+      - chaostesting
+    labelSelectors:
+      app.kubernetes.io/name: redises.kubedb.com
+      kubedb.com/role: slave
+  duration: "10m"
