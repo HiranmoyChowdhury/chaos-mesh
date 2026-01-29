@@ -1,20 +1,20 @@
 apiVersion: kubedb.com/v1
 kind: Redis
 metadata:
-  name: rd
+  name: vk-sen
   namespace: chaostesting
 spec:
   version: 8.2.2
-  mode: Cluster
-  cluster:
-    shards: 3
-    replicas: 2
-  storageType: Durable
+  replicas: 3
+  sentinelRef:
+    name: sen
+    namespace: demo
+  mode: Sentinel
   storage:
     resources:
       requests:
         storage: 1Gi
     storageClassName: "standard"
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
   deletionPolicy: WipeOut

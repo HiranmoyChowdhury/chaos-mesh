@@ -13,3 +13,4 @@ spec:
       app.kubernetes.io/name: redises.kubedb.com
       kubedb.com/role: master
   duration: "10m"
+  containerNames: ['redis']
